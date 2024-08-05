@@ -1,43 +1,52 @@
-1.1	Tổng quan
--	Với số lượng các phương tiện tham gia giao thông cũng đang ngày một gia tăng một cách chóng mặt, cùng với đó các cơ sở hạ tầng và ban ngành quản lý về trật tự giao thông cũng đang không thể đáp ứng đủ với sự gia tăng đó. Chính điều này đã giúp cho nhận diện vi phạm giao thông là một lĩnh vực đang thu hút nhiều sự quan tâm, với mục tiêu cải thiện hiệu quả giám sát và xử lý các hành vi vi phạm giao thông.
--	Với cơ hội rộng mở như vậy, Công nghệ học máy (Machine Learning) và học sâu (Deep Learning) đã tăng khả năng cho máy tính nhận diện, hiểu và xử lý hình ảnh một cách thông minh. Nhờ việc học thông qua huấn luyện mà các mô hình máy học có thể nhận diện vật thể và hiểu hình ảnh theo cách tự động tương tự như cách con người nhìn và xử lý chúng. Trong hệ thống, thị giác máy tính giúp nhận diện và khoanh vùng được phạm vi hình ảnh cần nhận diện như đèn giao thông, tín hiệu đèn giao thông, vạch dừng và biển số xe.
--	Sự kết hợp giữa Học sâu và thị giác máy tính để nhận diện vi phạm giao thông dựa trên tín hiệu đèn giao thông. Tuy nhiên, nghiên cứu này đặt ra nhiều thách thức, từ việc thiết kế mô hình Học sâu phù hợp, khả năng nhận diện các vật thể, đến việc tối ưu hóa hiệu suất và độ chính xác khi ứng dụng thực tế.
--	Tóm lại, nghiên cứu về thị giác máy tính và mô hình Học sâu để xây dựng hệ thống giao thông thông minh, khả năng nhận diện được hành vi vi phạm giao thông tại các đèn giao thông đặc biệt tại vị trí Đại học Quốc Gia TP HCM, đóng góp phần nhiều vào lĩnh vực an toàn giao thông, hạn chế tối đa các tai nạn có thể xảy ra.
-1.2	Lý do chọn đề tài
--	Chưa được triển khai rộng rãi tại Đại học Quốc Gia – TP HCM, có thể triển khai và ứng dụng tại địa điểm này.
--	Giải quyết được tối đa vấn đề thực tế đang xảy ra: không tuân thủ luật giao thông dễ gây nên tai nạn giao thông.
--	Tiết kiệm được sức người, hệ thống có thể tự động giám sát và phát hiện hành vi vi phạm.
-1.3	Mục tiêu nghiên cứu
-Mục đích chính của đề tài này là phát triển “XÂY DỰNG HỆ THỐNG NHẬN DIỆN VI PHẠM VÀ ỨNG DỤNG TRA CỨU THÔNG TIN VI PHẠM GIAO THÔNG DỰA TRÊN CÁC LOẠI MÔ HÌNH MÁY HỌC”, nhằm tự động hóa quá trình phạt nguội và giữ trật tự an toàn giao thông. Hệ thống sẽ sử dụng đa dạng các loại mô hình Deep Learning để xử lý dữ liệu được thu thập các camera giám sát, cho phép xử lý một cách tự động.
-1.4	Đối tượng nghiên cứu
--	Thu thập dữ liệu: 
-•	Hình ảnh đèn giao thông: Dữ liệu ban đầu được thu thập hình ảnh của 3 loại đèn giao thông (go, stop, warning – xanh, đỏ, vàng).
-•	Hình ảnh biển số xe: Dữ liệu ban đầu được thu thập hình ảnh của biển số xe các loại ở nhiều nơi.
-•	Gắn nhãn dữ liệu: Quá trình gán nhãn được thực hiện để xác định biển số xe trong từng hình ảnh, tạo ra một bộ dữ liệu đã được gán nhãn phục vụ cho việc huấn luyện mô hình.
--	Xây dựng và phát triển các loại mô hình Deep Learning:
-•	Sử dụng các mô hình học sâu: SSD MobileNet v2, Inceptionv3 để nhận diện và phân loại đèn giao thông và phương tiện vi phạm.
-•	Sử dụng thuật toán Hough Line Transform: nhận diện vạch dừng chờ đèn đỏ.
-•	Sử dụng mô hình YOLOv5: nhận diện biển số xe.
-•	Sử dụng module OCR để nhận diện ký tự trên biển số xe.
-1.5	Phạm vi nghiên cứu
--	Phần offline:
-•	Xây dựng bộ dữ liệu: Thu thập, gán nhãn và tăng cường dữ liệu để tạo ra một bộ dữ liệu phong phú và đa dạng.
-•	Huấn luyện mô hình: Sử dụng bộ dữ liệu đã xây dựng để huấn luyện và đánh giá các mô hình SSD MobileNet v2, YOLOv5
--	Phần online: Đánh giá và cải tiến: Liên tục đánh giá hiệu suất của hệ thống trong môi trường thực tế và cải tiến để đảm bảo độ chính xác và hiệu quả.
-1.6	Các nghiên cứu liên quan
-˗	Phần này chúng tôi sẽ giới thiệu về các nghiên cứu liên quan đến đề tài của chúng tôi ở trong và ngoài nước.
-1.6.1	Trong nước:
-˗	Trong nghiên cứu này, nhóm đã sử dụng các mô hình học sâu, cụ thể là YOLOv4, để xác định vị trí biển số xe trong ảnh. Kết quả cho thấy mô hình đạt độ chính xác cao, với mAP (mean Average Precision) lên tới 91% và tốc độ xử lý đạt 31,2 FPS, cho thấy khả năng áp dụng hiệu quả của mô hình trong các hệ thống nhận diện biển số xe thời gian thực. 
-˗	Đề xuất sử dụng mô hình YOLOv4 để phát hiện và nhận diện biển báo và tín hiệu đèn giao thông. Họ sử dụng phần cứng Jetson TX2 để tối ưu thời gian huấn luyện. Dữ liệu sử dụng bao gồm 32 lớp với hơn 1500 ảnh được thu thập từ Los Angeles. Hệ thống đạt được chỉ số mAP 91% và tốc độ 31.2 FPS trên tập dữ liệu kiểm tra. 
-1.6.2	Ngoài nước
-˗	Đề xuất một hệ thống nhận diện đèn giao thông sử dụng kỹ thuật học sâu (deep learning) và bản đồ trước (prior maps) trên nền tảng xe tự hành IARA. Họ sử dụng mô hình YOLOv3 để phát hiện và phân loại trạng thái đèn giao thông từ hình ảnh camera. Kết quả cho thấy hệ thống có thể nhận diện chính xác các đèn giao thông liên quan trong các tuyến đường được định trước tại thành phố Vitoria. 
-˗	Trong nghiên cứu này, nhóm tác giả đã sử dụng mô hình học sâu Inception-V3 dựa trên phương pháp học chuyển giao để phát hiện và nhận diện đèn giao thông. Quá trình thực hiện bao gồm việc huấn luyện và kiểm tra mô hình trên bộ dữ liệu LISA traffic light, được tăng cường bởi các phương pháp tiền xử lý dữ liệu. Kết quả cho thấy mô hình đạt được độ chính xác 98,6% trong việc nhận diện đèn giao thông. 
-1.6.3	Những vấn đề còn tồn tại.
--	Mặc dù có nhiều nghiên cứu đã được thực hiện nhằm cải thiện chất lượng và hiệu quả của các hệ thống giám sát vi phạm giao thông, vẫn còn tồn tại một số vấn đề chưa được giải quyết hoàn toàn:
-•	Độ chính xác và hiệu suất của mô hình: Mặc dù các mô hình học sâu như CNN và YOLO đã đạt được nhiều thành công, vẫn còn tồn tại vấn đề về độ chính xác và hiệu suất khi áp dụng trong môi trường thực tế, đặc biệt là với các hình ảnh có nhiễu và điều kiện ánh sáng khác nhau.
-•	Khả năng mở rộng và tính linh hoạt: Hầu hết các nghiên cứu tập trung vào một loại mô hình xử lý cho một công việc cụ thể nhất đinhhj, chưa có nhiều sự kết hợp để tạo nên một hệ thống.
-1.6.4	Những vấn đề cần tập trung giải quyết.
--	Dựa trên các vấn đề còn tồn tại đã được xác định, nghiên cứu này sẽ tập trung vào việc giải quyết các vấn đề sau:
-•	Xây dựng bộ dữ liệu đa dạng và phong phú: Thu thập và gán nhãn dữ liệu  cho 2 bộ dữ liệu phân loại đèn giao thông và nhận diện biển số  phương tiện vi phạm.
-•	Phát triển và tối ưu hoá mô hình: Nghiên cứu, huấn luyện 2 mô hình  Inceptionv3 (cho nhiệm vụ phân loại đèn giao thông) và YOLOv5 (cho nhiệm vụ nhận diện biển số xe).
-![Uploading image.png…]()
+### 1.1 Overview
+- With the rapid increase in the number of vehicles participating in traffic, the infrastructure and management agencies responsible for traffic order are unable to keep up with this growth. Consequently, traffic violation detection has become a highly attractive field, aiming to improve the effectiveness of monitoring and handling traffic violations.
+- Given this opportunity, Machine Learning (ML) and Deep Learning (DL) technologies have enhanced computers' ability to intelligently recognize, understand, and process images. Through training, ML models can identify objects and interpret images in an automated manner similar to how humans perceive and process them. In such systems, computer vision helps to identify and localize key image areas that need to be recognized, such as traffic lights, signals, stop lines, and vehicle license plates.
+- The combination of Deep Learning and computer vision aims to detect traffic violations based on traffic signals. However, this research faces several challenges, including designing an appropriate Deep Learning model, the capability of object recognition, and optimizing performance and accuracy for practical applications.
+- In summary, research into computer vision and Deep Learning models for building smart traffic systems capable of detecting traffic violations at traffic lights, especially at the Vietnam National University - Ho Chi Minh City (VNU-HCM), significantly contributes to traffic safety and minimizes potential accidents.
+
+### 1.2 Reasons for Choosing the Topic
+- Not yet widely implemented at VNU-HCM, allowing for deployment and application at this location.
+- Effectively addresses current issues: non-compliance with traffic laws often leads to accidents.
+- Saves human resources, with the system capable of automatically monitoring and detecting violations.
+
+### 1.3 Research Objectives
+The main purpose of this study is to develop a "SYSTEM FOR TRAFFIC VIOLATION DETECTION AND INFORMATION QUERY APPLICATION BASED ON MACHINE LEARNING MODELS" to automate the process of issuing fines and maintaining traffic order. The system will utilize various Deep Learning models to process data collected from surveillance cameras, allowing for automatic handling.
+
+### 1.4 Research Subjects
+- **Data Collection:**
+  - Traffic Light Images: Initial data collection includes images of three types of traffic lights (go, stop, warning – green, red, yellow).
+  - License Plate Images: Initial data collection includes images of various license plates from different locations.
+  - Data Labeling: The labeling process identifies license plates in each image, creating a labeled dataset for model training.
+- **Building and Developing Deep Learning Models:**
+  - Using deep learning models such as SSD MobileNet v2, Inceptionv3 to detect and classify traffic lights and violating vehicles.
+  - Using the Hough Line Transform algorithm to detect stop lines at red lights.
+  - Using the YOLOv5 model to recognize license plates.
+  - Using OCR modules to detect characters on license plates.
+
+### 1.5 Research Scope
+- **Offline Phase:**
+  - Building the Dataset: Collecting, labeling, and augmenting data to create a rich and diverse dataset.
+  - Training Models: Using the constructed dataset to train and evaluate the SSD MobileNet v2 and YOLOv5 models.
+- **Online Phase:**
+  - Evaluation and Improvement: Continuously evaluating the system's performance in real-world environments and making improvements to ensure accuracy and efficiency.
+
+### 1.6 Related Research
+This section introduces related research to our topic both domestically and internationally.
+
+#### 1.6.1 Domestic:
+- This study used deep learning models, specifically YOLOv4, to locate license plates in images. The results showed high accuracy with a mean Average Precision (mAP) of up to 91% and a processing speed of 31.2 FPS, demonstrating the model's effective application in real-time license plate recognition systems.
+- Proposing the use of the YOLOv4 model to detect and recognize traffic signs and signals. They used Jetson TX2 hardware to optimize training time. The data included 32 classes with over 1500 images collected from Los Angeles. The system achieved a mAP of 91% and a speed of 31.2 FPS on the test dataset.
+
+#### 1.6.2 International:
+- Proposing a traffic light recognition system using deep learning and prior maps on the IARA autonomous vehicle platform. They used the YOLOv3 model to detect and classify traffic light states from camera images. Results showed the system could accurately recognize relevant traffic lights on predefined routes in Vitoria city.
+- This study used the Inception-V3 deep learning model based on transfer learning to detect and recognize traffic lights. The process included training and testing the model on the LISA traffic light dataset, augmented by data preprocessing methods. Results showed the model achieved 98.6% accuracy in recognizing traffic lights.
+
+#### 1.6.3 Existing Issues
+- Despite numerous studies aimed at improving the quality and efficiency of traffic violation monitoring systems, some issues remain unresolved:
+  - **Model Accuracy and Performance:** While deep learning models like CNN and YOLO have achieved significant success, there are still issues regarding accuracy and performance in real-world applications, especially with noisy images and varying lighting conditions.
+  - **Scalability and Flexibility:** Most studies focus on a specific model for a particular task, lacking integration to create a comprehensive system.
+
+#### 1.6.4 Issues to Focus On
+- Based on the identified existing issues, this research will focus on addressing the following:
+  - Building a diverse and rich dataset: Collecting and labeling data for traffic light classification and license plate recognition.
+  - Developing and optimizing models: Researching and training the Inceptionv3 model (for traffic light classification) and the YOLOv5 model (for license plate recognition).
