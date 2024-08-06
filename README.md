@@ -1,3 +1,6 @@
+# Building a detection system and developing an application to look up traffic violation information based on various types of machine learning models.
+
+
 ### 1.1 Overview
 - With the rapid increase in the number of vehicles participating in traffic, the infrastructure and management agencies responsible for traffic order are unable to keep up with this growth. Consequently, traffic violation detection has become a highly attractive field, aiming to improve the effectiveness of monitoring and handling traffic violations.
 - Given this opportunity, Machine Learning (ML) and Deep Learning (DL) technologies have enhanced computers' ability to intelligently recognize, understand, and process images. Through training, ML models can identify objects and interpret images in an automated manner similar to how humans perceive and process them. In such systems, computer vision helps to identify and localize key image areas that need to be recognized, such as traffic lights, signals, stop lines, and vehicle license plates.
@@ -252,4 +255,13 @@ In evaluating the YOLOv5 model, the main metrics used to assess performance incl
 - Consider data augmentation techniques or adjusting training parameters to further enhance results.
 - Further research on model optimization to reduce the number of parameters and increase computational efficiency without compromising accuracy.v
 
+### 1.9 Conclusion
 
+#### 1.9.1 Advantages
+- The system successfully identifies traffic lights, violation areas, and vehicle license plates. It was deployed and tested in the University Village area, effectively recognizing traffic lights and violators' license plates.
+- The application was successfully deployed to capture violating vehicles based on their license plates.
+
+#### 1.9.2 Disadvantages
+- The system lacks real-time recognition capabilities. The video processing time is quite long.
+- The actual testing time for the system was relatively short (30 minutes), and it could not export license plate information to a txt file.
+- The system cannot operate continuously over time. A potential solution to improve this is to deploy the model on an EC2 cloud service.
