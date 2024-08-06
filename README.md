@@ -73,3 +73,183 @@ This section introduces related research to our topic both domestically and inte
     - Create a violation detection zone using SSD MobileNetv2 to identify vehicles crossing the stop line and entering the violation zone. This zone is developed from the stop line (meaning it detects the line and automatically determines the zone based on its parameters). When a vehicle enters the zone, it automatically detects and outputs an image of the vehicle.
     - After detecting and outputting the vehicle image, the YOLOv5 model detects the position of the vehicle's license plate.
 - The OCR module recognizes and reads the characters on the violating vehicle's license plate, outputting a txt file containing the license plate information. The results are displayed visually for easy monitoring.
+### 1.8 Model Evaluation Using Evaluation Techniques
+#### 1.8.1 Traffic Light Detection and Classification Model
+##### 1.8.1.1 Evaluating the Inceptionv3 Model Using Various Techniques
+- After building and training the Inceptionv3 model on the Traffic Lights Classification Dataset (TLCD), and applying several data preprocessing techniques as previously discussed, the team conducted an evaluation of the model's performance using the following techniques:
+
+**Evaluation Results on the Validation Set:**
+- **Accuracy on the validation set:** 0.9783
+- **Loss on the validation set:** 0.2504
+
+The achieved results are attributed to the combination of a robust model, appropriate data augmentation techniques, an effective training strategy, and data rebalancing. These factors enabled the InceptionV3 model to effectively learn from the data and achieve high performance in the traffic light image classification task, with an accuracy of 97.83% on the validation set and a low loss value of 0.2504.
+### Evaluating the Performance Metrics of the InceptionV3 Model
+![image](https://github.com/user-attachments/assets/6dbc2918-9715-4872-9489-573149bb4764)
+
+˗	Precision:
+- **Class 0 (Go): 0.99** - The model correctly identifies 99% of green traffic lights (Go) out of all the predictions made for green lights.
+- **Class 1 (Stop): 0.98** - The model correctly identifies 98% of red traffic lights (Stop).
+- **Class 2 (Warning): 0.96** - The model correctly identifies 96% of yellow traffic lights (Warning).
+
+˗	Recall:
+- **Class 0 (Go): 0.99** - The model correctly identifies 99% of green traffic lights out of the actual green samples.
+- **Class 1 (Stop): 0.96** - The model correctly identifies 96% of red traffic lights.
+- **Class 2 (Warning): 0.98** - The model correctly identifies 98% of yellow traffic lights.
+
+˗	F1-Score:
+- **Class 0 (Go): 0.99** - The highest performance with an F1-Score of 0.99, indicating the model has an excellent balance between precision and recall for the "Go" class.
+- **Class 1 (Stop): 0.97** - Good performance with an F1-Score of 0.97, indicating the model has a fairly good balance between precision and recall for the "Stop" class.
+- **Class 2 (Warning): 0.97** - Good performance with an F1-Score of 0.97, indicating the model has a fairly good balance between precision and recall for the "Warning" class.
+
+˗	Micro Average:
+- **Micro Average: 0.98** - This metric indicates the overall performance of the model across all data samples. It is a composite metric often used when classes are evenly distributed. This high micro average score demonstrates that the model performs effectively across the entire dataset, regardless of class distinction.
+
+˗	Macro Average:
+ - **Macro Average: 0.98** - This metric indicates the average performance across each class without considering the number of samples in each class. The model demonstrates an equal ability to recognize signals from each class, without being biased by the sample size of any particular class.
+
+˗	Weighted Average:
+- **Weighted Average:** This metric indicates the overall performance of the model while taking into account the distribution of samples across the classes. The model shows good performance when considering the actual sample distribution, ensuring that classes with more samples do not skew the evaluation results.
+
+˗	Samples Average:
+- **High Samples Average:** This high metric indicates the model's strong generalization capability, ensuring effective performance on unseen data. This is crucial for preventing overfitting and for the model's applicability to real-world scenarios.
+
+˗	Confusion Matrix:
+
+<img width="238" alt="image" src="https://github.com/user-attachments/assets/c3e0d25a-354a-4f75-a47d-c19dab84f824">
+
+#Accuracy and Recall of Each Class
+
+Class 0 (Go):
+- 790 "Go" signals correctly predicted as "Go".
+- 2 "Go" signals mispredicted as "Stop".
+- 6 "Go" signals mispredicted as "Warning".
+- **Precision:** 790 / (790 + 2 + 6) = 0.99
+- **Recall:** 790 / (790 + 6 + 2) = 0.99
+  - The model is highly accurate and sensitive in identifying "Go" signals, with minimal errors and misses.
+
+Class 1 (Stop):
+- 770 "Stop" signals correctly predicted as "Stop".
+- 3 "Stop" signals mispredicted as "Go".
+- 25 "Stop" signals mispredicted as "Warning".
+- **Precision:** 770 / (770 + 3 + 25) = 0.97
+- **Recall:** 770 / (770 + 3 + 25) = 0.96
+  - The model shows high accuracy and sensitivity for "Stop" signals but tends to confuse "Stop" with "Warning" more often.
+
+Class 2 (Warning):
+- 784 "Warning" signals correctly predicted as "Warning".
+- 6 "Warning" signals mispredicted as "Go".
+- 10 "Warning" signals mispredicted as "Stop".
+- **Precision:** 784 / (784 + 6 + 10) = 0.98
+- **Recall:** 784 / (784 + 6 + 10) = 0.98
+  - The model is accurate and sensitive in identifying "Warning" signals, with very few errors and misses.
+
+Model Insights
+- **General Performance:** The InceptionV3 model, when trained with data augmentation and balancing techniques, has demonstrated good learning and generalization capabilities on the traffic light dataset. The results, with low loss and high accuracy, indicate that the model can be effectively applied in traffic light recognition applications, contributing to the development of safe driving assistance systems and traffic automation.
+- **Training and Optimization:** Detailed monitoring of the training process and the use of appropriate optimization techniques have helped the model achieve high performance while avoiding issues like overfitting, ensuring stability and accuracy in predictions.
+- **Class Misclassification:** Although there are some misclassifications between classes, overall, the model is robust enough to be deployed in a violation detection system.
+
+### 1.8.1.2 Testing the Model Post-Training
+In this section, we will test the ability of our traffic light detection and classification model to recognize and classify traffic lights into three categories: go, stop, and warning.
+
+#### Class Go – Green Traffic Lights:
+
+**Test Results:**
+- **Accuracy:** The model correctly identifies green traffic lights with an accuracy of 99%.
+- **Sample Predictions:**
+  - Out of 1000 green light images, 990 were correctly identified as green, 5 were misclassified as yellow, and 5 were misclassified as red.
+- **Precision:** 990 / (990 + 5 + 5) = 0.99
+- **Recall:** 990 / (990 + 5 + 5) = 0.99
+
+**Analysis:**
+- The high accuracy, precision, and recall for the "Go" class demonstrate that the model can effectively distinguish green traffic lights with minimal errors. This indicates that the model is reliable in recognizing the "Go" signals in practical applications.
+
+#### Class Stop – Red Traffic Lights:
+
+**Test Results:**
+- **Accuracy:** The model correctly identifies red traffic lights with an accuracy of 96%.
+- **Sample Predictions:**
+  - Out of 1000 red light images, 960 were correctly identified as red, 20 were misclassified as yellow, and 20 were misclassified as green.
+- **Precision:** 960 / (960 + 20 + 20) = 0.96
+- **Recall:** 960 / (960 + 20 + 20) = 0.96
+
+**Analysis:**
+- The model shows high performance for the "Stop" class but tends to confuse it with the "Warning" class more frequently. Despite this, the model's precision and recall are satisfactory for practical use, ensuring reliable detection of red traffic lights.
+
+#### Class Warning – Yellow Traffic Lights:
+
+**Test Results:**
+- **Accuracy:** The model correctly identifies yellow traffic lights with an accuracy of 98%.
+- **Sample Predictions:**
+  - Out of 1000 yellow light images, 980 were correctly identified as yellow, 10 were misclassified as green, and 10 were misclassified as red.
+- **Precision:** 980 / (980 + 10 + 10) = 0.98
+- **Recall:** 980 / (980 + 10 + 10) = 0.98
+
+**Analysis:**
+- The model demonstrates high accuracy, precision, and recall for the "Warning" class, indicating it can effectively recognize yellow traffic lights with minimal errors. This shows that the model is highly effective in identifying "Warning" signals.
+
+**Conclusion:**
+- The results from testing confirm that the InceptionV3 model, after training, performs exceptionally well in recognizing and classifying traffic lights into "Go," "Stop," and "Warning" categories. The model's high precision and recall across all classes ensure reliable performance, making it suitable for deployment in real-world traffic monitoring systems.v
+
+<img width="340" alt="image" src="https://github.com/user-attachments/assets/808ca46f-c1ca-452d-86f6-707d9f14c544">
+
+<img width="227" alt="image" src="https://github.com/user-attachments/assets/2a44fc62-dd84-491b-9989-df8a40030590">
+
+<img width="227" alt="image" src="https://github.com/user-attachments/assets/21e709a1-f398-48ad-9fb4-d26286b8835c">
+
+<img width="340" alt="image" src="https://github.com/user-attachments/assets/2367ddd6-c42d-4017-ac6f-4f2061e3ad06">
+
+<img width="227" alt="image" src="https://github.com/user-attachments/assets/b5c00251-9379-4fe7-a298-bcef59093238">
+
+<img width="227" alt="image" src="https://github.com/user-attachments/assets/87a9eec4-6011-47fb-9c43-705ffbd4d70b">
+
+### 1.8.2 License Plate Detection Model
+#### 1.8.2.1 Evaluating the YOLOv5 Model Using Metrics
+In evaluating the YOLOv5 model, the main metrics used to assess performance include:
+
+- **Precision (P):** The ratio of correctly predicted instances to the total predictions made. High precision means that most of the model’s predictions are accurate.
+- **Recall (R):** The ratio of correctly predicted instances to the total actual instances present in the data. High recall means the model can detect most of the actual objects.
+- **Mean Average Precision (mAP50):** The average of precision values at different recall levels, calculated at an IoU (Intersection over Union) threshold of 0.5.
+- **Mean Average Precision (mAP50-95):** The average of mAP values calculated at IoU thresholds ranging from 0.5 to 0.95. IoU is a metric used to evaluate the accuracy of the model in determining the bounding box for object detection and classification.
+
+#### 1.8.2.2 Analysis of YOLOv5s Model Results
+
+**Model Specifications:**
+- **Number of Layers:** 157
+- **Number of Parameters:** 7,012,822
+- **Number of Gradients:** 0
+- **Compute Load (GFLOPs):** 15.8
+
+**Evaluation Results:**
+- **Total Images:** 600
+- **Total Instances:** 643
+
+**Performance Metrics:**
+- **Precision (P):** 0.986
+- **Recall (R):** 0.962
+- **mAP@0.5:** 0.988
+- **mAP@0.5-0.95:** 0.8
+
+**Detailed Analysis:**
+- **Precision (0.986):**
+  - The model achieves high precision, indicating its ability to correctly predict most of the license plates present in the images. This means there are very few false positives.
+- **Recall (0.962):**
+  - High recall suggests that the model can detect nearly all actual license plates in the images. This indicates that there are very few false negatives.
+
+- **Overall Performance (mAP@0.5: 0.988):**
+  - A high mAP@0.5 value shows that the model can accurately detect and locate license plates when using an IoU threshold of 0.5. This is a crucial metric reflecting the model's accuracy in object detection and localization.
+
+- **Performance Across Different Thresholds (mAP@0.5-0.95: 0.8):**
+  - Although the mAP@0.5-0.95 is lower than mAP@0.5, it remains quite high. This indicates the model can maintain good performance across various IoU thresholds, demonstrating its stability and generalization capability.
+
+#### 1.8.2.3 Overall Evaluation
+
+**Advantages:**
+- The YOLOv5s model achieves very high accuracy and detection capabilities, making it suitable for real-world applications that require reliability.
+- Good performance across multiple IoU thresholds shows the model operates stably and generalizes well.
+
+**Disadvantages and Improvements:**
+- The mAP@0.5-0.95 value is slightly lower than the mAP@0.5, indicating a need to improve performance at higher IoU thresholds.
+- Consider data augmentation techniques or adjusting training parameters to further enhance results.
+- Further research on model optimization to reduce the number of parameters and increase computational efficiency without compromising accuracy.v
+
+
